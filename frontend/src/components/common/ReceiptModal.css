@@ -1,0 +1,470 @@
+/* ==========================================================================
+   ReceiptModal.css - Realistic Thermal Receipt with Dispenser & Blur Backdrop
+   ========================================================================== */
+
+.receipt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(18, 11, 7, 0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: var(--space-4);
+  overflow-y: auto;
+  animation: receiptFadeIn 0.22s ease-out forwards;
+}
+
+@keyframes receiptFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.receipt-modal-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 390px;
+  margin: auto;
+  animation: receiptSlideDown 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes receiptSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Close button - floating glass icon */
+.receipt-close-btn {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(220, 210, 200, 0.8);
+  color: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: all 0.15s ease;
+}
+
+.receipt-close-btn:hover {
+  background: #ffffff;
+  color: #111827;
+  transform: scale(1.08);
+}
+
+/* Metallic Dispenser Slot Bezel (as seen in reference image) */
+.receipt-slot-bezel {
+  width: 100%;
+  max-width: 380px;
+  height: 48px;
+  background: linear-gradient(180deg, #F9FAFB 0%, #E5E7EB 35%, #9CA3AF 85%, #6B7280 100%);
+  border-radius: 24px;
+  padding: 7px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 10px 25px -4px rgba(0, 0, 0, 0.35),
+    0 4px 8px -2px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 3;
+}
+
+.receipt-slot-inner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #374151 0%, #1F2937 40%, #111827 100%);
+  border-radius: 16px;
+  padding: 4px 10px;
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.8),
+    0 1px 0 rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+}
+
+.receipt-slot-hole {
+  width: 100%;
+  height: 10px;
+  background: #0B0E14;
+  border-radius: 5px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.95);
+}
+
+/* Realistic Thermal Receipt Paper */
+.receipt-paper {
+  position: relative;
+  width: 90%;
+  max-width: 340px;
+  background: #FFFFFF;
+  color: #1F2937;
+  font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
+  padding: 24px 22px 36px 22px;
+  margin-top: -14px; /* slides out from under the dispenser bezel */
+  z-index: 2;
+  box-shadow:
+    0 22px 45px -8px rgba(0, 0, 0, 0.35),
+    0 10px 20px -4px rgba(0, 0, 0, 0.2),
+    -4px 0 12px -2px rgba(0, 0, 0, 0.08),
+    4px 0 12px -2px rgba(0, 0, 0, 0.08);
+  border-left: 1px solid rgba(0, 0, 0, 0.04);
+  border-right: 1px solid rgba(0, 0, 0, 0.04);
+  user-select: text;
+}
+
+/* Brand Header */
+.receipt-brand-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.receipt-brand-logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.receipt-brand-logo {
+  width: 68px;
+  height: auto;
+  max-height: 68px;
+  object-fit: contain;
+  filter: contrast(1.15) brightness(0.9);
+}
+
+.receipt-brand-title {
+  font-family: var(--font-heading, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #111827;
+  margin: 0 0 2px 0;
+}
+
+.receipt-brand-amharic {
+  font-family: 'Nyala', 'Abyssinica SIL', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: #7A3E26; /* Signature coffee warm tone */
+  margin: 0 0 6px 0;
+  letter-spacing: 0.5px;
+}
+
+.receipt-brand-address,
+.receipt-brand-tel {
+  font-size: 10.5px;
+  color: #4B5563;
+  margin: 1px 0;
+  letter-spacing: 0.3px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* RECEIPT Title Banner */
+.receipt-type-title {
+  text-align: center;
+  padding: 5px 0;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #111827;
+  font-family: var(--font-heading, -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+/* Dividers */
+.receipt-divider-double-dashed {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 10px 0;
+}
+
+.receipt-dash-line {
+  border-bottom: 1.5px dashed #4B5563;
+  opacity: 0.85;
+}
+
+.receipt-divider-dashed {
+  border-bottom: 1.5px dashed #4B5563;
+  margin: 9px 0;
+  opacity: 0.85;
+}
+
+.receipt-divider-dotted {
+  border-bottom: 1.5px dotted #6B7280;
+  margin: 6px 0;
+  opacity: 0.7;
+}
+
+/* Metadata Grid */
+.receipt-meta-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11.5px;
+  color: #374151;
+}
+
+.receipt-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.receipt-meta-label {
+  color: #4B5563;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.receipt-meta-val {
+  color: #111827;
+  text-align: right;
+  font-weight: 500;
+}
+
+.receipt-bold {
+  font-weight: 800;
+  color: #000000;
+}
+
+/* Items Section */
+.receipt-items-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #374151;
+  padding: 2px 0;
+}
+
+.receipt-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 3px 0;
+}
+
+.receipt-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 12px;
+  line-height: 1.35;
+  color: #1F2937;
+}
+
+.receipt-item-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 72%;
+}
+
+.receipt-item-qty {
+  font-weight: 700;
+  color: #111827;
+  min-width: 20px;
+}
+
+.receipt-item-name {
+  color: #1F2937;
+  word-break: break-word;
+}
+
+.receipt-item-subtotal {
+  font-weight: 700;
+  color: #111827;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Total Row */
+.receipt-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.receipt-total-label {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #000000;
+  font-family: var(--font-heading, -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+.receipt-total-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: #000000;
+}
+
+/* Payment Section */
+.receipt-payment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11.5px;
+}
+
+.receipt-voided-stamp {
+  margin-top: 6px;
+  padding: 4px;
+  text-align: center;
+  color: #DC2626;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border: 1.5px dashed #DC2626;
+  font-size: 11.5px;
+}
+
+/* Footer Section */
+.receipt-footer {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.receipt-thank-you {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #111827;
+  margin: 0 0 3px 0;
+  font-family: var(--font-heading, -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+.receipt-sub-msg {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #6B7280;
+  margin: 0 0 12px 0;
+}
+
+/* Barcode */
+.receipt-barcode-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.receipt-barcode-svg {
+  width: 82%;
+  max-width: 220px;
+  height: 38px;
+  display: block;
+}
+
+.receipt-barcode-text {
+  font-size: 9.5px;
+  letter-spacing: 3px;
+  color: #4B5563;
+}
+
+/* Realistic Scallop / Serrated Paper Tear Edge at Bottom */
+.receipt-scallop-bottom {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8' viewBox='0 0 16 8'%3E%3Cpath d='M0 0 L0 2 C2 7 6 7 8 2 C10 7 14 7 16 2 L16 0 Z' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 16px 8px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.18));
+}
+
+/* Actions below receipt (Print button) */
+.receipt-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.receipt-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #231713;
+  color: #FAF5F0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 18px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: all 0.18s ease;
+}
+
+.receipt-action-btn:hover {
+  background: #3B241C;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* Print stylesheet */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .receipt-overlay {
+    position: static;
+    background: transparent;
+    backdrop-filter: none;
+    padding: 0;
+    margin: 0;
+  }
+  .receipt-modal-wrapper {
+    margin: 0;
+    max-width: 100%;
+  }
+  .receipt-close-btn,
+  .receipt-slot-bezel,
+  .receipt-actions,
+  .receipt-scallop-bottom {
+    display: none !important;
+  }
+  #printable-receipt,
+  #printable-receipt * {
+    visibility: visible;
+  }
+  #printable-receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80mm;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 10px;
+  }
+}
