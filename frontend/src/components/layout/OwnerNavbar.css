@@ -1,0 +1,72 @@
+/* ============================================
+   Owner Navigation Bar Styles
+   ============================================ */
+
+.owner-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 0 var(--space-6);
+  background: var(--surface-card, #FFFFFF);
+  border-bottom: 1.5px solid var(--border-light, #E8DFD8);
+  height: var(--topbar-height, 60px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 1px 3px rgba(46, 27, 21, 0.03);
+}
+
+.owner-navbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.owner-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.owner-navbar-brand-icon {
+  color: var(--color-brown-700, #4A2C22);
+}
+
+.owner-navbar-brand-title {
+  font-size: var(--font-size-sm, 13.5px);
+  font-weight: 800;
+  color: var(--color-brown-800, #301B14);
+  letter-spacing: -0.01em;
+}
+
+.owner-navbar-breadcrumb {
+  font-size: var(--font-size-xs, 12px);
+  font-weight: 600;
+  color: var(--color-text-muted, #766A64);
+}
+
+.owner-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-left: auto;
+}
+
+.owner-navbar-date {
+  font-size: var(--font-size-sm, 13px);
+  color: var(--color-text-muted, #766A64);
+}
+
+.owner-navbar-time {
+  font-size: var(--font-size-sm, 13px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-text-secondary, #4A3E39);
+}
+
+@media (max-width: 768px) {
+  .owner-navbar {
+    padding: 0 var(--space-4);
+  }
+}
